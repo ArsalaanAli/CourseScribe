@@ -18,5 +18,3 @@ time_elapsed = end_time - start_time
 
 with open('output_file.txt', 'w') as f:
     f.write(text)
-
-print("done in", time_elapsed)
