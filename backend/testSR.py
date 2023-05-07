@@ -3,7 +3,7 @@ import time
 
 r = sr.Recognizer()
 
-audio_file = sr.AudioFile('backend/EpicurusLecture.wav')
+audio_file = sr.AudioFile('backend/EpicurusLectureFull.wav')
 
 with audio_file as source:
     audio_data = r.record(source)
@@ -16,5 +16,6 @@ end_time = time.time()
 
 time_elapsed = end_time - start_time
 
-with open('output_file.txt', 'w') as f:
+with open('output_file1.txt', 'w') as f:
     f.write(text)
+print("done", time_elapsed)
