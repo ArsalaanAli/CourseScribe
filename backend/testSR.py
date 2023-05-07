@@ -16,6 +16,6 @@ end_time = time.time()
 
 time_elapsed = end_time - start_time
 
-with open('output_file1.txt', 'w') as f:
+with open('output_filefull.txt', 'w') as f:
     f.write(text)
 print("done", time_elapsed)
