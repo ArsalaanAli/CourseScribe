@@ -16,9 +16,13 @@ def runApiCall():
 
             lecturePrompt = "This is a transcription of a lecture, write in depth bullet points explaining the content of this lecture: \n" + transcription
 
-            response = openai.Completion.create(
-                model="gpt-3.5-turbo", prompt="hi there", temperature=0, max_tokens=7)
-            return response
+            # completion = openai.ChatCompletion.create(
+            #     model="gpt-3.5-turbo",
+            #     messages=[
+            #         {"role": "user", "content": "Hello!"}
+            #     ]
+            # )
+            return None
         except Exception as e:
             print(e)
             return None
