@@ -1,3 +1,6 @@
+from moviepy.editor import VideoFileClip
+
+
 def get_chunks(transcript):
     sentences = transcript.split(".")
     wordCount = 0
@@ -13,3 +16,10 @@ def get_chunks(transcript):
             wordCount = 0
             base = i+1
     return chunks
+
+
+def convert_to_wav(video_path, output_path):
+    video = VideoFileClip(video_path)
+    audio = video.audio
+
+    audio.write_audiofile(output_path, codec='pcm_s16le')

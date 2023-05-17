@@ -11,13 +11,21 @@ function App() {
     const formData = new FormData();
 
     console.log(file);
-    formData.append("userVideo", file);
+    formData.append("file", file);
     formData.append("description", "heres a desc of the video");
     const requestOptions = {
       method: "POST",
       body: formData,
     };
-    const resp = await fetch("http://localhost:3000/post", requestOptions);
+    const resp = await fetch("http://localhost:5000/upload", requestOptions);
+
+    const body = await resp.text();
+
+    console.log(body);
+  };
+
+  const callTest = async () => {
+    const resp = await fetch("http://localhost:5000/test");
 
     const body = await resp.text();
 
@@ -55,6 +63,7 @@ function App() {
         }}
       />
       <button onClick={(e: any) => callBackend(inputFile)}>Submit</button>
+      <button onClick={(e: any) => callTest()}>Test</button>
     </>
   );
 }
