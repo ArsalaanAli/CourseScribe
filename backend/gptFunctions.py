@@ -13,16 +13,20 @@ def get_notes(transcriptFile):
         try:
             transcription = r.read()
             chunks = get_chunks(transcription)
-            lecturePrompt = "This is a transcription of a lecture, write bullet points explaining the content of this lecture, make the bullet points thorough and make sure you cover every part of the lecture, start each bullet point with the symbol '•': \n"
+            lecturePrompt = "This is a transcription of a lecture, write bullet points explaining the content of this lecture, return the bullet points as strings in a list with this format 'point1 | point2 | point3...' : \n"
             for c in chunks:
                 response = gpt_call(lecturePrompt + c)
-                notes.append(response)
+                for point in response.split("|"):
+                    notes.append(point)
                 print("reponse recieved")
-
             return notes
         except Exception as e:
             print(e)
             return notes
+
+
+def add_notes_to_database(notes):
+    print(notes)
 
 
 def gpt_call(prompt):
