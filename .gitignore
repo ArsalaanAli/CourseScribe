@@ -1,4 +1,5 @@
 *.wav
+*.mp4
 # Logs
 logs
 *.log
