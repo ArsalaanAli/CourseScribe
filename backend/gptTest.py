@@ -16,7 +16,9 @@ def getNotes():
             lecturePrompt = "This is a transcription of a lecture, write bullet points explaining the content of this lecture, make the bullet points thorough and make sure you cover every part of the lecture, start each bullet point with the symbol '•': \n"
             for c in chunks:
                 response = apiCall(lecturePrompt + c)
-                notes.append(response)
+                response = response.split("•")
+                for r in response:
+                    notes.append(r)
                 print("reponse recieved")
 
             return notes
