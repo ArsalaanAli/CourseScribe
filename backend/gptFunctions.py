@@ -15,9 +15,10 @@ def get_notes(transcriptFile):
             chunks = get_chunks(transcription)
             lecturePrompt = "This is a transcription of a lecture, write bullet points explaining the content of this lecture, seperate each bullet point with the symbol '•' : \n"
             for c in chunks:
-                response = apiCall(lecturePrompt + c)
+                response = api_call(lecturePrompt + c)
                 response = response.split("•")
                 for r in response:
+                    r = r.strip("\n")
                     notes.append(r)
                 print("reponse recieved")
             return notes
@@ -26,11 +27,7 @@ def get_notes(transcriptFile):
             return notes
 
 
-def add_notes_to_database(notes):
-    print(notes)
-
-
-def gpt_call(prompt):
+def api_call(prompt):
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
