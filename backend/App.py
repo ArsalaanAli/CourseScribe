@@ -41,8 +41,9 @@ def upload_file():
 
         print("Summarizing Notes")
         notes = get_notes("backend/transcriptions/transcript.txt")
-
-    add_notes_to_database(notes)
+        joinedNotes = "|".join(notes)
+    # get user and notename
+    add_notes_to_database(joinedNotes)
 
     print("DONE")
     return notes, 200

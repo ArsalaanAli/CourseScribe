@@ -60,7 +60,7 @@ model User {
 model Notes {
     noteId   String @id @default(cuid())
     user     User   @relation(fields: [userId], references: [id])
-    noteData String
+    noteData String @db.Text
     noteName String
     userId   String
 
