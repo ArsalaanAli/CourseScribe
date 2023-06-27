@@ -2,7 +2,8 @@ from flask import Flask, request
 from flask_cors import CORS
 from helperFunctions import convert_to_wav
 from audioTranscription import transcribe_audio
-from gptFunctions import get_notes, add_notes_to_database
+from gptFunctions import get_notes
+from databaseFunctions import add_notes_to_database
 import os
 app = Flask(__name__)
 CORS(app)
@@ -20,7 +21,11 @@ def test():
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
-
+    if 'file' not in request.files:
+        return 'No file uploaded.', 400
+    file = request.files['file']
+    print(file.filename+" Receieved")
+    return "success", 200
     if os.path.exists("backend/transcriptions/transcript.txt"):
         notes = get_notes("backend/transcriptions/transcript.txt")
     else:
