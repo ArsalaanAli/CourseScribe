@@ -3,6 +3,7 @@ from prisma import Prisma
 
 
 async def prisma_post_notes(user, notes, noteName):
+    print(len(user), len(notes), len(noteName))
     prisma = Prisma()
     await prisma.connect()
     new_note = await prisma.notes.create(

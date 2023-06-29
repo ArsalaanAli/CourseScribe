@@ -1,9 +1,13 @@
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
-const callBackend = async (file: File) => {
+const callBackend = async (file: File, user: string, noteName: string) => {
   const formData = new FormData();
   formData.append("file", file);
+  formData.append("user", user);
+  formData.append("noteName", noteName);
   formData.append("description", "video uploaded to api");
   const requestOptions = {
     method: "POST",
@@ -17,7 +21,11 @@ const callBackend = async (file: File) => {
 };
 
 function Upload() {
+  const { data: session } = useSession();
+  const user = session?.user.id ? session.user.id : "testUserABC";
+
   const [file, setFile] = useState<File | null | undefined>(null);
+  const [noteName, setNoteName] = useState("");
   return (
     <div className="flex flex-col justify-center">
       <label className="block">
@@ -32,10 +40,16 @@ function Upload() {
           }}
         />
       </label>
+      <Input
+        className="mt-4"
+        type="text"
+        placeholder="Note Name"
+        onChange={(e) => setNoteName(e.target.value)}
+      />
       <Button
         className="mt-4 block"
         onClick={() => {
-          if (file) callBackend(file);
+          if (file) callBackend(file, user, noteName);
         }}
       >
         Upload

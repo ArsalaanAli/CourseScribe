@@ -10,7 +10,7 @@ if os.path.exists("backend/transcriptions/transcript.txt"):
         with open("backend/notes/note.txt", 'r') as file:
             notes = file.read()
             print("ok")
-            created_note = asyncio.run(add_notes_to_database(
+            created_note = (add_notes_to_database(
                 user="clilx27xg0000ujt8ln7e0hve", notes=notes, noteName="testNotePsych"))
             print(created_note)
 

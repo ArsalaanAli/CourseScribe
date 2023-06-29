@@ -61,7 +61,7 @@ model Notes {
     noteId   String @id @default(cuid())
     user     User   @relation(fields: [userId], references: [id])
     noteData String @db.Text
-    noteName String
+    noteName String @db.Text
     userId   String
 
     @@index([userId])
