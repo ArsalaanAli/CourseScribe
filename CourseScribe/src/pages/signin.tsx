@@ -57,8 +57,8 @@ export default function SignIn({
       <Background />
       <Container>
         <div className="relative">
-          <div className="relative flex h-screen flex-col items-center pt-36 ">
-            <h1 className="text-5xl font-bold text-gray-900 underline decoration-primary dark:text-white md:text-6xl xl:text-7xl">
+          <div className="relative flex h-screen flex-col items-center pt-20 ">
+            <h1 className="text-5xl font-bold text-gray-900 underline decoration-primary dark:text-white md:text-6xl">
               Sign In
             </h1>
             <div className="mt-10">
@@ -87,13 +87,17 @@ export default function SignIn({
                       <FormItem>
                         <FormLabel>Password</FormLabel>
                         <FormControl>
-                          <Input placeholder="Enter Password" {...field} />
+                          <Input
+                            placeholder="Enter Password"
+                            type="password"
+                            {...field}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  <Button type="submit">Submit</Button>
+                  <Button type="submit">Sign In</Button>
                 </form>
               </Form>
             </div>

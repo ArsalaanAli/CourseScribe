@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
+import Background from "~/components/Background";
 
 const callBackend = async (file: File, user: string, noteName: string) => {
   const formData = new FormData();
@@ -28,6 +29,7 @@ function Upload() {
   const [noteName, setNoteName] = useState("");
   return (
     <div className="flex flex-col justify-center">
+      <Background />
       <label className="block">
         <span className="sr-only">Choose profile photo</span>
         <input
