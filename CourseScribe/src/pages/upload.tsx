@@ -31,7 +31,7 @@ function Upload() {
     <div className="flex flex-col justify-center">
       <Background />
       <label className="block">
-        <span className="sr-only">Choose profile photo</span>
+        <span className="sr-only">Upload Video</span>
         <input
           type="file"
           className="block w-full text-sm text-gray-500 file:mr-4 file:rounded-md file:border-0 file:bg-blue-500 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white  hover:file:bg-blue-600"
