@@ -3,7 +3,8 @@ from flask_cors import CORS
 from helperFunctions import convert_to_wav
 from audioTranscription import transcribe_audio
 from gptFunctions import get_notes
-from databaseFunctions import add_notes_to_database
+from databaseFunctions import create_note_in_database, update_note_in_database
+from random import randint
 import os
 app = Flask(__name__)
 CORS(app)
@@ -21,36 +22,34 @@ def test():
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
-    if os.path.exists("backend/transcriptions/transcript.txt"):
-        file = request.files['file']
-        user = request.form["user"]
-        noteName = request.form["noteName"]
-    else:
-        if 'file' not in request.files:
-            return 'No file uploaded.', 400
+    if 'file' not in request.files:
+        return 'No file uploaded.', 400
 
-        file = request.files['file']
-        user = request.form["user"]
-        noteName = request.form["noteName"]
-        print(file.filename+" Receieved")
-        print(request.form["user"]+" Receieved")
-        print(request.form["noteName"]+" Receieved")
+    file = request.files['file']
+    user = request.form["user"]
+    noteName = request.form["noteName"].replace(
+        " ", "") + str(randint(1000, 9999))
+    print(file.filename+" Receieved")
+    print(request.form["user"]+" Receieved")
+    print(request.form["noteName"]+" Receieved")
 
-        file.save("backend/videos/"+file.filename)
+    file.save("backend/videos/"+file.filename)
 
-        print("Converting to wav")
-        convert_to_wav("backend/videos/"+file.filename,
-                       "backend/audios/audio.wav")
+    newNote = create_note_in_database(
+        notes="WAITING", user=user, noteName=noteName)
 
-        print("Transcribing Audio")
-        transcribe_audio("backend/audios/audio.wav",
-                         "backend/transcriptions/transcript.txt")
+    print("Converting to wav")
+    convert_to_wav("backend/videos/"+file.filename,
+                   "backend/audios/audio" + noteName + ".wav")
 
+    print("Transcribing Audio")
+    transcribe_audio("backend/audios/audio" + noteName + ".wav",
+                     "backend/transcriptions/" + noteName + ".txt")
     print("Summarizing Notes")
-    notes = get_notes("backend/transcriptions/transcript.txt")
+    notes = get_notes("backend/transcriptions/" + noteName + ".txt")
     joinedNotes = "|".join(notes)
-    # get user and notename
-    add_notes_to_database(notes=joinedNotes, user=user, noteName=noteName)
+    update_note_in_database(
+        noteId=newNote.noteId, notes=joinedNotes)
 
     print("DONE")
     return 'success', 200

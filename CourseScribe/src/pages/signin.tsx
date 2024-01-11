@@ -97,7 +97,12 @@ export default function SignIn({
                       </FormItem>
                     )}
                   />
-                  <Button type="submit">Sign In</Button>
+                  <button
+                    className="relative inset-0 flex h-11 w-full items-center justify-center rounded-full bg-primary px-6 font-semibold text-white transition duration-300 hover:scale-105 active:scale-95 active:duration-75 sm:w-max"
+                    type="submit"
+                  >
+                    Sign In
+                  </button>
                 </form>
               </Form>
             </div>

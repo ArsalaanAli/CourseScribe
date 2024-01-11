@@ -13,7 +13,7 @@ def get_notes(transcriptFile):
         try:
             transcription = r.read()
             chunks = get_chunks(transcription)
-            lecturePrompt = "This is a transcription of a lecture, write bullet points explaining the content of this lecture, seperate each bullet point with the symbol '•' : \n"
+            lecturePrompt = "You are getting multiple segments of a transcription of a lecture, write points explaining the content of this lecture, make the points long and in depth but make sure they are clear and easy to understand, seperate each point with the symbol '•' : \n"
             for c in chunks:
                 response = api_call(lecturePrompt + c)
                 response = response.split("•")

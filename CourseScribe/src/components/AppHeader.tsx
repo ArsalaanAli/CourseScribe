@@ -24,10 +24,10 @@ function AppHeader() {
             {status === "authenticated" ? (
               <div className=" flex w-auto flex-row pr-4 pt-0 text-gray-600 dark:text-gray-300">
                 <Link
-                  href="/profile"
+                  href="/notes"
                   className="mx-4 mt-1 text-xl font-medium transition-all hover:cursor-pointer hover:text-primary"
                 >
-                  Profile
+                  Notes
                 </Link>
 
                 <Link
