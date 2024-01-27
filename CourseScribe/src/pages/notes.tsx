@@ -25,7 +25,7 @@ function Notes({
       <AppHeader />
       <Background />
 
-      <div className="relative flex h-screen flex-col items-center pt-20 ">
+      <div className="relative flex h-screen flex-col items-center pt-20">
         <h1 className="text-5xl font-bold text-gray-900 dark:text-white md:text-6xl">
           Hi {session?.user.name?.split(" ").at(0)}
         </h1>
@@ -112,8 +112,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getServerSession(context.req, context.res, authOptions);
 
   // If the user is already logged in, redirect.
-  // Note: Make sure not to redirect to the same page
-  // To avoid an infinite loop!
   if (!session) {
     return { redirect: { destination: "/" } };
   }

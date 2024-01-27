@@ -9,7 +9,6 @@ function NoteCard(curNote: {
   userId: string;
 }) {
   const [showModal, setShowModal] = useState(false);
-  console.log(showModal);
   return (
     <div className="flex-rox mt-5 flex h-20 w-1/4 min-w-[350px]  items-center justify-between rounded-md outline outline-1 outline-slate-300">
       <div>

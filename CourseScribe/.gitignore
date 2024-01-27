@@ -40,3 +40,7 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+#backend storage
+/backend/audios
+/backend/transcriptions

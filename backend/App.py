@@ -29,9 +29,11 @@ def upload_file():
     user = request.form["user"]
     noteName = request.form["noteName"].replace(
         " ", "") + str(randint(1000, 9999))
+    depth = int(request.form["depth"])
     print(file.filename+" Receieved")
     print(request.form["user"]+" Receieved")
     print(request.form["noteName"]+" Receieved")
+    print(request.form["depth"]+" Receieved")
 
     file.save("backend/videos/"+file.filename)
 
@@ -46,7 +48,7 @@ def upload_file():
     transcribe_audio("backend/audios/audio" + noteName + ".wav",
                      "backend/transcriptions/" + noteName + ".txt")
     print("Summarizing Notes")
-    notes = get_notes("backend/transcriptions/" + noteName + ".txt")
+    notes = get_notes("backend/transcriptions/" + noteName + ".txt", depth)
     joinedNotes = "|".join(notes)
     update_note_in_database(
         noteId=newNote.noteId, notes=joinedNotes)
