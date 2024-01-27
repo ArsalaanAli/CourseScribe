@@ -27,3 +27,6 @@ dist-ssr
 .env
 
 __pycache__
+
+/backend/audios
+/backend/transcriptions
