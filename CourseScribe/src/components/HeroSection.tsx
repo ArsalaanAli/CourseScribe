@@ -41,8 +41,8 @@ function HeroSection() {
                   Sign In
                 </h6>
                 <img
-                  src="./images/clients/microsoft.svg"
-                  className="mx-auto h-12 w-auto"
+                  src="./signin.png"
+                  className="mx-auto w-56 lg:w-auto "
                   loading="lazy"
                   alt="desc logo"
                   width=""
@@ -51,11 +51,11 @@ function HeroSection() {
               </div>
               <div className="">
                 <h6 className="text-lg font-semibold text-gray-700 dark:text-white">
-                  Upload lecture
+                  Upload a lecture
                 </h6>
                 <img
-                  src="./images/clients/microsoft.svg"
-                  className="mx-auto h-12 w-auto"
+                  src="./upload.png"
+                  className="mx-auto w-56 lg:w-auto "
                   loading="lazy"
                   alt="desc logo"
                   width=""
@@ -67,8 +67,8 @@ function HeroSection() {
                   Get notes
                 </h6>
                 <img
-                  src="./images/clients/microsoft.svg"
-                  className="mx-auto h-12 w-auto"
+                  src="./notes.png"
+                  className="mx-auto w-56 lg:w-auto "
                   loading="lazy"
                   alt="desc logo"
                   width=""
